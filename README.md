@@ -1,102 +1,85 @@
-# dotfiles
+# karamel's gruvbox rice
 
-Managed with [GNU Stow](https://www.gnu.org/software/stow/). Each top-level folder is a
-"package" that mirrors the path it should land at under `$HOME` — `hypr/.config/hypr/...`
-gets symlinked to `~/.config/hypr/...` when you run `stow hypr`.
+my Hyprland setup on Arch. Gruvbox teal, dark, soft — that's the whole vibe. this repo is
+how I keep it from disappearing every time I reinstall.
 
-## Philosophy: allowlist, not mirror
+![desktop](screenshots/desktop.png)
 
-This repo does **not** track `~/.config` wholesale. It only tracks the specific app folders
-listed in `migrate.sh`. Anything not explicitly added — `Claude`, `vesktop`, `mozilla`,
-`Code`, `obsidian`, browser profiles, Steam, caches — is simply never touched, so there's
-nothing to exclude or gitignore for those. If you add a new app to your setup and want it
-tracked, add it to `migrate.sh`'s list (or just `mkdir`/`cp -a` it into a new package folder
-by hand) rather than trying to sweep in all of `.config`.
+fastfetch + waybar + cava sitting on top of a pixel-art forest wallpaper, vesktop open on
+the side. this is basically what my screen looks like on a normal day.
 
-## What's in here
+![waybar](screenshots/waybar.png)
 
-| package | what it is |
+waybar close up — workspaces on the left, a little media/tray cluster in the middle, then
+network/bluetooth/battery/clock on the right. kept it minimal on purpose, I don't want a
+bar that's doing too much.
+
+## the stack
+
+| | |
 |---|---|
-| hypr, waybar, kitty, dunst, rofi, wlogout, btop, cava, nvim | full app configs, low file count, safe to commit whole |
-| fish | shell config, minus `fish_variables`/`fish_history` (runtime state) |
-| gtk-3.0, gtk-4.0 | only `settings.ini` — the rest of gtk-4.0's folder is symlinks into `gtk-theme/`, not real files |
-| gtk-theme | the actual Gruvbox-Teal-Dark-Soft theme bytes (~3MB, small enough to commit directly) |
-| icons-cursor | `~/.icons/default/index.theme` — a 3-line pointer selecting the `phinger-cursors-dark` package, not the cursor pack itself |
-| spicetify | `config-xpui.ini` only — not the `Themes` folder, which is a symlink into `/opt/spicetify-cli` (package-provided) |
-| config-misc | loose files directly in `~/.config`: `mimeapps.list`, `starship.toml`, `user-dirs.dirs`, etc. |
-| shell | `.bashrc .zshrc .profile .bash_profile .bash_logout .gitconfig` |
-| local-bin | `env`, `env.fish` from `~/.local/bin` — not `uv`/`uvx` (61MB downloaded binaries) or `git-filter-repo` (a symlink into a pipx venv; reinstall with `pipx install git-filter-repo` instead) |
-| openrazer, nwg-displays, yay, fastfetch | small app configs, committed whole |
-| packages/pacman.txt, packages/aur.txt | `pacman -Qqen` / `pacman -Qqem` output — the actual package list, arguably the highest-value file in the repo |
-| system/ | snapshot of things that live outside `$HOME` and can't be symlinked (GRUB theme, sddm config) — see below |
-| install.sh | rebuilds everything on a fresh machine |
-| migrate.sh | (not meant to be committed — it's the tool that populated this repo from the live system) |
+| OS | Arch Linux |
+| WM | Hyprland 0.56 (Wayland) |
+| Terminal | kitty |
+| Shell | fish |
+| Bar | waybar |
+| Launcher | rofi |
+| Notifications | dunst |
+| Lockscreen | [qylock](https://github.com/Darkkal44/qylock) (quickshell-based, not mine — see below) |
+| GTK theme | Gruvbox-Teal-Dark-Soft |
+| Icons | WhiteSur-Dark |
+| Cursor | phinger-cursors-dark |
+| Font | CaskaydiaCove Nerd Font |
+| Audio viz | cava |
+| System info | fastfetch |
 
-## Deliberately excluded, and why
+CPU's an i7-14650HX, GPU is a 4050 Max-Q, running on a laptop — so a chunk of the hypr
+config is fan/perf-mode stuff, not just eye candy.
 
-- **`Claude`, `vesktop`, `mozilla`, `Code`, `Code - OSS`, `obsidian`, `libreoffice`** — these
-  are app profile/cache directories, not hand-edited config. Thousands of files, gigabytes
-  of IndexedDB/session data/vault content. If you want editor settings tracked, cherry-pick
-  `Code/User/settings.json` and `keybindings.json` specifically rather than the whole folder.
-- **`~/.claude.json`** — contains session/auth data. Never commit this, anywhere.
-- **Steam, pnpm/uv caches, `.cargo`, `.npm`** — package manager and game caches, fully
-  regenerable, huge.
-- **Wallpapers** — kept out of this repo on purpose (782MB across a personal collection).
-  If your hyprpaper/swww config references specific wallpaper files, copy just those into
-  a small `wallpapers/` package; keep the rest as a separate synced folder.
+## why gruvbox teal
 
-## Boot theme / sddm (`system/`)
+I wanted gruvbox's warmth without the usual orange/brown everywhere — teal reads calmer to
+me and still fits the palette without clashing. soft variant because the hard-contrast
+gruvbox themes felt a bit much for something I'm staring at for 8+ hours a day.
 
-These live outside `$HOME` (`/boot`, `/etc`) so Stow can't symlink them — root-owned paths
-read before your home directory is even mounted. Instead they're kept as **copies** under
-`system/boot/...` and `system/etc/...`, applied by `install.sh` with an explicit
-confirmation prompt and a `diff` against whatever's already on the target machine before
-anything is overwritten. This is one-directional: if you tweak your GRUB theme later,
-manually re-copy it into the repo (`cp -a /boot/grub/themes/OldBIOS system/boot/grub/themes/`)
-— there's no live sync.
+## what's actually in here
 
-You currently have both GRUB and systemd-boot present with entries. If that's leftover from
-switching bootloaders at some point rather than intentional dual-boot management, worth
-picking one and removing the other's entries — right now both `install.sh` and any manual
-setup should treat GRUB as the one actually in use, since `/etc/default/grub` sets
-`GRUB_THEME`.
+This isn't a straight copy of my `~/.config` — that folder's got 18GB of Discord/browser/
+editor cache sitting in it that has nothing to do with the rice. This repo only tracks the
+stuff I actually hand-configure, managed with [GNU Stow](https://www.gnu.org/software/stow/)
+— every top-level folder here mirrors where it lands under `$HOME`, so `stow hypr` symlinks
+`hypr/.config/hypr` straight to `~/.config/hypr`. Editing my live config *is* editing this
+repo.
 
-## External: lockscreen (qylock)
+Full breakdown of what's tracked vs. deliberately left out, plus the day-to-day workflow for
+adding new configs, is in the comments — this file's just the vibe check.
 
-Uses [Darkkal44/qylock](https://github.com/Darkkal44/qylock), cloned separately to `~/qylock`,
-not vendored in this repo. `~/.local/share/quickshell-lockscreen/themes_link` symlinks to
-`~/qylock/themes`. `install.sh` clones it automatically on a fresh machine.
+## installing this
 
-## Day-to-day workflow
-
-Adding a new app's config:
 ```sh
-mkdir -p ~/dotfiles/newapp/.config/newapp
-cp -a ~/.config/newapp/* ~/dotfiles/newapp/.config/newapp/
-cd ~/dotfiles && stow --adopt -t ~ newapp   # symlinks it, seeding from what you just copied
-git add newapp && git commit -m "track newapp config"
+git clone https://github.com/prem4002/karamels-gruvbox-dotfiles.git
+cd karamels-gruvbox-dotfiles
+./install.sh
 ```
 
-Editing an already-tracked config: just edit the file at its normal path
-(`~/.config/hypr/hyprland.conf`) — it's a symlink into the repo, so you're editing the repo
-file directly. `cd ~/dotfiles && git status` to see what changed, commit as usual.
+Installs packages (native + AUR), stows everything into place, offers to set up the boot
+theme, and clones [qylock](https://github.com/Darkkal44/qylock) for the lockscreen since
+that's someone else's project I just use, not something I vendor here.
 
-Removing a package: `stow -D -t ~ appname` un-symlinks it and restores nothing (the repo
-copy stays; delete the folder + commit if you want it gone for good).
+## credits
 
-Fresh machine: clone this repo, run `./install.sh`.
+- [Gruvbox-Teal-Dark-Soft](https://www.gnome-look.org) GTK theme — committed directly in
+  `gtk-theme/`, it's the actual bytes since it's a specific variant I'm not trying to
+  regenerate from scratch every install
+- [WhiteSur-icon-theme](https://github.com/vinceliuice/WhiteSur-icon-theme) for icons
+- [phinger-cursors](https://github.com/phisch/phinger-cursors) for the cursor
+- [qylock](https://github.com/Darkkal44/qylock) by Darkkal44 for the lockscreen — go check
+  out the original, it's not something I built
 
-## Package list maintenance
+## still on the todo list
 
-Regenerate when your installed packages drift from what's committed:
-```sh
-pacman -Qqen > packages/pacman.txt   # native, explicitly installed
-pacman -Qqem > packages/aur.txt      # foreign (AUR)
-```
+- wallpapers aren't in the repo yet (782MB collection, only the couple hyprpaper actually
+  uses need to make the cut — haven't trimmed it down)
+- boot theme (GRUB) isn't snapshotted in yet either, need to grab it with sudo separately
 
-## If something huge ever gets committed by accident
-
-You already have `git-filter-repo` installed (`~/.local/bin/git-filter-repo`, via pipx).
-That's the right tool — `git-filter-repo --path .config/Claude --invert-paths` (run on a
-fresh clone, then force-push) strips a path from all of history. Cheaper to just not commit
-it in the first place, which is what the allowlist in `migrate.sh` is for.
+if you're poking around this repo and something looks half-finished, that's why.
