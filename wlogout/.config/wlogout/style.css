@@ -1,0 +1,100 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    font-size: 36px;
+}
+
+window {
+    background-color: rgba(40, 40, 40, 0.80);
+}
+
+button {
+    color: #ebdbb2;                  /* Gruvbox fg */
+    background-color: rgba(60, 56, 54, 0.50);     /* Gruvbox bg1 */
+
+    border: none;       /* Gruvbox bg3 */
+    border-radius: 16px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 36%;
+
+    min-width: 160px;
+    min-height: 160px;
+
+    margin: 12px;
+
+    text-shadow: none;
+    transition: all 0.25s ease;
+}
+
+button:focus {
+    background-color: #504945;
+    background-size: 30%;
+}
+
+button:hover {
+    background-color: #665c54;
+    background-size: 32%;
+}
+
+/* Lock */
+#lock {
+    background-image: image(
+        url("/home/prem/.config/wlogout/icons/lock.png"),
+        url("/usr/share/wlogout/icons/lock.png")
+    );
+    background-color: rgba(60, 56, 54, 0.50);
+}
+
+#lock:hover {
+    background-color: #458588;
+}
+
+/* Logout */
+#logout {
+    background-image: image(
+        url("/home/prem/.config/wlogout/icons/logout.png"),
+        url("/usr/share/wlogout/icons/logout.png")
+    );
+}
+
+#logout:hover {
+    background-color: #d79921;
+}
+
+/* Suspend */
+#suspend {
+    background-image: image(
+        url("/home/prem/.config/wlogout/icons/suspend.png"),
+        url("/usr/share/wlogout/icons/suspend.png")
+    );
+}
+
+#suspend:hover {
+    background-color: #689d6a;
+}
+
+/* Reboot */
+#reboot {
+    background-image: image(
+        url("/home/prem/.config/wlogout/icons/reboot.png"),
+        url("/usr/share/wlogout/icons/reboot.png")
+    );
+}
+
+#reboot:hover {
+    background-color: #b16286;
+}
+
+/* Shutdown */
+#shutdown {
+    background-image: image(
+        url("/home/prem/.config/wlogout/icons/shutdown.png"),
+        url("/usr/share/wlogout/icons/shutdown.png")
+    );
+}
+
+#shutdown:hover {
+    background-color: #cc241d;
+}

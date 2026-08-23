@@ -1,0 +1,67 @@
+[global]
+### Display ###
+monitor = 0
+follow = mouse
+width = 420
+height = (0, 110)
+origin = top-right
+offset = (24, 24)
+scale = 0
+
+### Appearance ###
+transparency = 10
+corner_radius = 24
+padding = 20
+horizontal_padding = 20
+frame_width = 0
+separator_height = 2
+gap_size = 12
+
+### Fonts ###
+font = Inter Medium 11
+line_height = 4
+
+### Icons ###
+enable_recursive_icon_lookup = true
+icon_position = left
+icon_theme = WhiteSur-dark
+icon_path = /usr/share/icons/WhiteSur-dark
+max_icon_size = 36
+
+### Behavior ###
+idle_threshold = 120
+history_length = 20
+show_age_threshold = 60
+markup = full
+format = "<b>%s</b>\n%b"
+
+### Mouse ###
+mouse_left_click = close_current
+mouse_middle_click = close_all
+mouse_right_click = do_action
+
+### Misc ###
+always_run_script = true
+sticky_history = true
+ignore_newline = no
+
+#################################################
+# URGENCY LEVELS
+#################################################
+
+[urgency_low]
+background = "#282828cc"
+foreground = "#ebdbb2"
+frame_color = "#689d6a"
+timeout = 4
+
+[urgency_normal]
+background = "#3c3836ee"
+foreground = "#ebdbb2"
+frame_color = "#7c6f64"
+
+[urgency_critical]
+background = "#282828cc"
+foreground = "#fb4934"
+frame_color = "#cc241d"
+timeout = 0

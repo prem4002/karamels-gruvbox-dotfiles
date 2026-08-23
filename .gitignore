@@ -1,0 +1,26 @@
+# Safety net — the allowlist approach (only copying what migrate.sh names) is the real
+# protection, but this catches accidents if you stow-adopt something broader later.
+
+# runtime state / caches that sometimes hide inside otherwise-legit config dirs
+fish_variables
+fish_history
+*.log
+*.sqlite
+*.sqlite3
+SingletonLock
+SingletonCookie
+SingletonSocket
+lockfile
+
+# secrets — never
+*.env
+.env
+**/credentials*
+**/*token*
+**/*secret*
+.claude.json
+.claude.json.tmp*
+
+# OS/editor noise
+.DS_Store
+*.swp

@@ -1,0 +1,30 @@
+{
+"label" : "lock",
+"action" : "~/.local/share/quickshell-lockscreen/lock.sh",
+"text" : "Lock",
+"keybind" : "l"
+},
+{
+"label" : "suspend",
+"action" : "systemctl suspend",
+"text" : "Suspend",
+"keybind" : "s"
+},
+{
+"label" : "logout",
+"action" : "hyprctl dispatch 'hl.dsp.session.logout()'",
+"text" : "Logout",
+"keybind" : "e"
+},
+{
+"label" : "reboot",
+"action" : "systemctl reboot",
+"text" : "Reboot",
+"keybind" : "r"
+},
+{
+"label" : "shutdown",
+"action" : "systemctl poweroff",
+"text" : "Shutdown",
+"keybind" : "p"
+}
