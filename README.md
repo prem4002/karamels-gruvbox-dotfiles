@@ -1,12 +1,8 @@
 # karamel's gruvbox rice
 
-my Hyprland setup on Arch. Gruvbox teal, dark, soft — that's the whole vibe. this repo is
-how I keep it from disappearing every time I reinstall.
+my Hyprland setup on Arch. Gruvbox teal, dark, soft.
 
 ![desktop](screenshots/desktop.png)
-
-fastfetch + waybar + cava sitting on top of a pixel-art forest wallpaper, vesktop open on
-the side. this is basically what my screen looks like on a normal day.
 
 ![waybar](screenshots/waybar.png)
 
@@ -36,23 +32,11 @@ bar that's doing too much.
 CPU's an i7-14650HX, GPU is a 4050 Max-Q, running on a laptop — so a chunk of the hypr
 config is fan/perf-mode stuff, not just eye candy.
 
-## why gruvbox teal
+## blah blah
 
-I wanted gruvbox's warmth without the usual orange/brown everywhere — teal reads calmer to
-me and still fits the palette without clashing. soft variant because the hard-contrast
-gruvbox themes felt a bit much for something I'm staring at for 8+ hours a day.
-
+ssssssssss
 ## what's actually in here
 
-This isn't a straight copy of my `~/.config` — that folder's got 18GB of Discord/browser/
-editor cache sitting in it that has nothing to do with the rice. This repo only tracks the
-stuff I actually hand-configure, managed with [GNU Stow](https://www.gnu.org/software/stow/)
-— every top-level folder here mirrors where it lands under `$HOME`, so `stow hypr` symlinks
-`hypr/.config/hypr` straight to `~/.config/hypr`. Editing my live config *is* editing this
-repo.
-
-Full breakdown of what's tracked vs. deliberately left out, plus the day-to-day workflow for
-adding new configs, is in the comments — this file's just the vibe check.
 
 ## installing this
 
@@ -63,8 +47,7 @@ cd karamels-gruvbox-dotfiles
 ```
 
 Installs packages (native + AUR), stows everything into place, offers to set up the boot
-theme, and clones [qylock](https://github.com/Darkkal44/qylock) for the lockscreen since
-that's someone else's project I just use, not something I vendor here.
+theme, and clones [qylock](https://github.com/Darkkal44/qylock)
 
 ## credits
 
@@ -76,10 +59,6 @@ that's someone else's project I just use, not something I vendor here.
 - [qylock](https://github.com/Darkkal44/qylock) by Darkkal44 for the lockscreen — go check
   out the original, it's not something I built
 
-## still on the todo list
+## todo list
 
-- wallpapers aren't in the repo yet (782MB collection, only the couple hyprpaper actually
-  uses need to make the cut — haven't trimmed it down)
-- boot theme (GRUB) isn't snapshotted in yet either, need to grab it with sudo separately
-
-if you're poking around this repo and something looks half-finished, that's why.
+need to add more hehe
