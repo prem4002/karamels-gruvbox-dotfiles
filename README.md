@@ -61,6 +61,12 @@ picking one and removing the other's entries — right now both `install.sh` and
 setup should treat GRUB as the one actually in use, since `/etc/default/grub` sets
 `GRUB_THEME`.
 
+## External: lockscreen (qylock)
+
+Uses [Darkkal44/qylock](https://github.com/Darkkal44/qylock), cloned separately to `~/qylock`,
+not vendored in this repo. `~/.local/share/quickshell-lockscreen/themes_link` symlinks to
+`~/qylock/themes`. `install.sh` clones it automatically on a fresh machine.
+
 ## Day-to-day workflow
 
 Adding a new app's config:

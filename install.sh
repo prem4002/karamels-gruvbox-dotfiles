@@ -50,6 +50,15 @@ if [ -d "$REPO/system/etc/sddm.conf.d" ]; then
 fi
 
 echo
+echo "== Qylock lockscreen (external repo) =="
+if [ ! -d "$HOME/qylock" ]; then
+  git clone https://github.com/Darkkal44/qylock "$HOME/qylock"
+  echo "Cloned. Check its own README for build/setup steps."
+fi
+mkdir -p "$HOME/.local/share/quickshell-lockscreen"
+ln -sfn "$HOME/qylock/themes" "$HOME/.local/share/quickshell-lockscreen/themes_link"
+
+echo
 echo "== 5/5: Services + misc setup =="
 systemctl --user enable --now wireplumber.service pipewire.socket pipewire-pulse.socket p11-kit-server.socket xdg-user-dirs.service
 sudo systemctl enable --now sddm.service NetworkManager
