@@ -30,7 +30,7 @@ bar that's doing too much.
 | System info | fastfetch |
 
 CPU's an i7-14650HX, GPU is a 4050 Max-Q, running on a laptop — so a chunk of the hypr
-config is fan/perf-mode stuff, not just eye candy.
+config is fan/perf-mode stuff
 
 ## blah blah
 
